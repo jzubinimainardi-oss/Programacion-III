@@ -1,0 +1,5 @@
+[
+  { "id": 1, "titulo": "Atardecer en la playa", "url": "img/playa.jpg" },
+  { "id": 2, "titulo": "Montaña nevada", "url": "img/montaña.jpg" },
+  { "id": 3, "titulo": "Colinas verde", "url": "img/colinas.jpg" }
+]

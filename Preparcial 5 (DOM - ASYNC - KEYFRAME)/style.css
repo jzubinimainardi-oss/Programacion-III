@@ -1,0 +1,77 @@
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: bisque;
+}
+
+h1{
+    margin: 0;
+    text-align: center;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border-style:solid;
+    border-radius: 20px solid black;
+    border-color: black;
+    justify-content: space-between;
+}
+
+.contenedorFotoIndividual{
+    padding: 10px;
+    margin: 10px;
+    width: max-content;
+    border-style: groove;
+    border-radius: 20px;
+    border-color: green;
+}
+
+h2{
+    margin: 0;
+    text-align: center;
+    font-family:monospace;
+}
+
+img{
+    width: 300px;
+    border: 5px solid black;
+}
+
+.contenedorFotoIndividual img:hover{
+    transform: scale(1.2);
+}
+
+button{
+    margin-left: 10px;
+    background-color: black;
+}
+
+@media(max-width: 480px){
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .contenedorFotoIndividual{
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0px;
+    }
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.desvanecimiento{
+    animation: animacion-imagen-eliminada 5s ease-in 0s normal forwards;
+}
+
+@keyframes animacion-imagen-eliminada{
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
