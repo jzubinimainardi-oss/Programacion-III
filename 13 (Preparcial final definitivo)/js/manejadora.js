@@ -2,6 +2,7 @@ let usuariosRegistrados = [];
 
 document.addEventListener("DOMContentLoaded",()=>{
     cargarUsuarios();
+    administrarBotones();
 });
 
 async function cargarUsuarios(){
@@ -12,7 +13,6 @@ async function cargarUsuarios(){
             throw new Error("Error en la petición: ${archivo.status}");
         }
         const usuarios = await archivo.json();
-        console.log(usuarios);
         usuarios.forEach(element => {
             let nuevoUsuario = new Usuario(element.name,element.username,element.email,element.phone,element.address["city"],element.company["name"],element.id);
             usuariosRegistrados.push(nuevoUsuario);
@@ -21,6 +21,25 @@ async function cargarUsuarios(){
     }catch(error){
         console.error("Hubo un problema al cargar los usuarios", error);
     }
+}
+
+async function administrarBotones(){
+    const btnGuardar = document.getElementById("btnGuardar");
+    btnGuardar.addEventListener("click",(e)=>{
+        e.preventDefault();
+        try{
+            if(!validarCamposFormulario){
+                throw new Error("Inputs incompletos");
+            }
+            const inputNombre = document.getElementById("inputNombre");
+            const inputUsuario = document.getElementById("inputUsuario");
+            const inputMail = document.getElementById("inputMail");
+            const inputTelefono = document.getElementById("inputTelefono");
+            let nuevoUsuario = new Usuario()
+        }catch(error){
+            console.error("Hubo un problema al cargar el nuevo usuario", error);
+        }
+    })
 }
 
 function renderizarTabla(){
@@ -45,16 +64,32 @@ function renderizarTabla(){
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td>${element._id}</td>
-            <td>${element._nombre}</td>
+            <td>${element._nombre}</td=>
             <td>${element._usuario}</td>
             <td>${element._email}</td>
             <td>${element._telefono}</td>
             <td>${element._ciudad}</td>
             <td>${element._empresa}</td>
             <td>
-                <button class="btn-editar" data-id="${element._id}">Editar</button>
-                <button class="btn-eliminar" data-id="${element._id}">Eliminar</button>
+                <button class="bg-warning btn btn-outline-warning" data-id="${element._id}">Editar</button>
+                <button class="bg-danger btn btn-outline-danger" data-id="${element._id}">Eliminar</button>
             </td>`;
         tabla.appendChild(fila);
     });
 }
+
+function validarCamposFormulario(){
+    const inputNombre = document.getElementById("inputNombre");
+    const inputUsuario = document.getElementById("inputUsuario");
+    const inputMail = document.getElementById("inputMail");
+    const inputTelefono = document.getElementById("inputTelefono");
+    if(inputNombre != "" && 
+        inputUsuario != "" && 
+        inputMail != "" && 
+        inputTelefono != ""){
+        return true;
+    }else{
+        return false;
+    }
+}
+
